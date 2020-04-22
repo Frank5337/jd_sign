@@ -1,0 +1,38 @@
+server:
+  port: 1025
+
+#默认凌晨0点上午11点 中午12点("去掉了") 和晚上11点跑一次
+cron: 0 0 0,10,11,14,20 * * ?
+
+#邮件接收人
+mailTo: zhangbaolin.1000@163.com
+
+spring:
+  #邮箱发件人配置
+  mail:
+    host: smtp.163.com
+    username: 15990157013@163.com
+    password: FOBKJPBUAAHXWUTM
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+  redis:
+    database: 1
+    host: localhost
+    port: 6379
+    password: zbl5337
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+    timeout: 5000
+#直接写入cookie
+jdCookie: shshshfpa=6250020b-2130-d6e0-7ad4-a14aab171ad8-1545235570; shshshfpb=kzOUMHbmx6%20MtP6aqLl8rlQ%3D%3D; pinId=9Jc-X54tFDo2onDe2QxeUrV9-x-f3wj7; TrackID=1xj325GBj6SYCm5vN6zlxHQLTu21e7tXzTtv9rH-d_hOHdC-zs0gkfRfpdTDMQzETF1PLMCkF3qtxcwGiEAPCvJpaOXNv7QLbNOl3lPurceI; __jdu=1518511195; unpl=V2_ZzNtbUNVEUVxCBIGK0tcDGIGFQoSAhcXdAxHV38cXg0zUBAJclRCFnQUR1ZnGloUZwMZWERcQBZFCEdkeBBVAWMDE1VGZxBFLV0CFSNGF1wjU00zQwBBQHcJFF0uSgwDYgcaDhFTQEJ2XBVQL0oMDDdRFAhyZ0AVRQhHZHsdXAxjAxJdSlNzJXI4dmR4GFwDZgoiXHJWc1chVEFTfB1ZBSoDFl1LU0MVdQBCZHopXw%3d%3d; __jdv=76161171|baidu-pinzhuan|t_288551095_baidupinzhuan|cpc|0f3d30c8dba7459bb52f2eb5eba8ac7d_0_03ca51ecac18446fade305025439eb3e|1585280841877; 3AB9D23F7A4B3C9B=ICV56IANEIQ3MQ53AXKXVDDBLSEMGTZTOBBMMYZW5PNDEU3XWQHUYF6AH2L6AM5EHSMKIXLRLNAGPC4WXXATFEQLM4; __jda=122270672.1518511195.1578103279.1585280842.1586484192.5; __jdc=122270672; mba_muid=1518511195; shshshfp=1d208ba2bbfdbba1647664afe9c29108; shshshsID=92d14c7e43152ced4c798711cafb671b_1_1586484206221; jcap_dvzw_fp=2b9f81c066ead9bfb4078e5f06a4191f$717482702711; TrackerID=VIPMzFcKKMTYssTPfAPetA56DMXf02yyt9M4yZtYZEpPyIuGGUJbspzM33jnyIG2XxBDi011RXaVwY-D4_qEnXC_3zPFjMF4frd9UbUvCEfiiWqHshKC5OGNAqkB-5FE; pt_key=AAJej9Q6ADBOnLq4FiHn6nr8iuxYmiXVkJoMpZE_zwBCMGIbDhAbdyD3MqLrIjrTmVKfhL9TUjg; pt_pin=jd_792227b8aa521; pt_token=t97uz4r2; pwdt_id=jd_792227b8aa521; whwswswws=; __jd_ref_cls=MLoginRegister_LoginSuccess; mobilev=html5; __jdb=122270672.3.1518511195|5.1586484192; mba_sid=15864841928566023233658953386.3
