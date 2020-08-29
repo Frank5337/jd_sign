@@ -21,10 +21,38 @@ spring:
           starttls:
             enable: true
             required: true
-
+  datasource:
+    url: jdbc:mysql://47.99.69.28:3306/jd_sign?characterEncoding=utf-8&useSSL=false&useAffectedRows=true&allowMultiQueries=true
+    username: root
+    password: zbl5337
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 1
+      min-idle: 3
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测, 检测需要关闭的空闲连接, 单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间, 单位是毫秒
+      min-evictable-idle-time-millis: 30000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache, 并且制定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的filters, 去掉后监控界面sql无法统计, 'wall'用于防火墙
+      filters: stat,wall,slf4j
+      # 通过connectProperties属性来打开mergeSql功能, 慢sql记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      # useGlobalDataSourceStat: true
   redis:
     database: 1
-    host: localhost
+    host: 47.99.69.28
     port: 6379
     password: zbl5337
     jedis:
@@ -34,5 +62,26 @@ spring:
         max-idle: 10
         min-idle: 0
     timeout: 5000
+      #  redis:
+      #    host: 47.99.69.28
+      #    port: 6379
+      #    password: zbl5337
+      #zbl-code:
+      #  worker-id: 0
+      #  data-center-id: 0
+      #eureka:
+      #  client:
+      #    service-url:
+      #      defaule-zone: http://${eureka.instanse.hostname}:6868/eureka/
+      # 开启熔断器
+      #feign:
+      #  hystrix:
+      #    enabled: true
+mybatis:
+  type-aliases-package: com.zbl.pojo
+  mapper-locations: classpath*:com/zbl/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#获取cookie地址https://bean.m.jd.com/
 #直接写入cookie
-jdCookie: shshshfpa=6250020b-2130-d6e0-7ad4-a14aab171ad8-1545235570; shshshfpb=kzOUMHbmx6%20MtP6aqLl8rlQ%3D%3D; pinId=9Jc-X54tFDo2onDe2QxeUrV9-x-f3wj7; TrackID=1xj325GBj6SYCm5vN6zlxHQLTu21e7tXzTtv9rH-d_hOHdC-zs0gkfRfpdTDMQzETF1PLMCkF3qtxcwGiEAPCvJpaOXNv7QLbNOl3lPurceI; __jdu=1518511195; unpl=V2_ZzNtbUNVEUVxCBIGK0tcDGIGFQoSAhcXdAxHV38cXg0zUBAJclRCFnQUR1ZnGloUZwMZWERcQBZFCEdkeBBVAWMDE1VGZxBFLV0CFSNGF1wjU00zQwBBQHcJFF0uSgwDYgcaDhFTQEJ2XBVQL0oMDDdRFAhyZ0AVRQhHZHsdXAxjAxJdSlNzJXI4dmR4GFwDZgoiXHJWc1chVEFTfB1ZBSoDFl1LU0MVdQBCZHopXw%3d%3d; __jdv=76161171|baidu-pinzhuan|t_288551095_baidupinzhuan|cpc|0f3d30c8dba7459bb52f2eb5eba8ac7d_0_03ca51ecac18446fade305025439eb3e|1585280841877; 3AB9D23F7A4B3C9B=ICV56IANEIQ3MQ53AXKXVDDBLSEMGTZTOBBMMYZW5PNDEU3XWQHUYF6AH2L6AM5EHSMKIXLRLNAGPC4WXXATFEQLM4; __jda=122270672.1518511195.1578103279.1585280842.1586484192.5; __jdc=122270672; mba_muid=1518511195; shshshfp=1d208ba2bbfdbba1647664afe9c29108; shshshsID=92d14c7e43152ced4c798711cafb671b_1_1586484206221; jcap_dvzw_fp=2b9f81c066ead9bfb4078e5f06a4191f$717482702711; TrackerID=VIPMzFcKKMTYssTPfAPetA56DMXf02yyt9M4yZtYZEpPyIuGGUJbspzM33jnyIG2XxBDi011RXaVwY-D4_qEnXC_3zPFjMF4frd9UbUvCEfiiWqHshKC5OGNAqkB-5FE; pt_key=AAJej9Q6ADBOnLq4FiHn6nr8iuxYmiXVkJoMpZE_zwBCMGIbDhAbdyD3MqLrIjrTmVKfhL9TUjg; pt_pin=jd_792227b8aa521; pt_token=t97uz4r2; pwdt_id=jd_792227b8aa521; whwswswws=; __jd_ref_cls=MLoginRegister_LoginSuccess; mobilev=html5; __jdb=122270672.3.1518511195|5.1586484192; mba_sid=15864841928566023233658953386.3
+#jdCookie: shshshfpa=6250020b-2130-d6e0-7ad4-a14aab171ad8-1545235570; shshshfpb=kzOUMHbmx6%20MtP6aqLl8rlQ%3D%3D; pinId=9Jc-X54tFDo2onDe2QxeUrV9-x-f3wj7; TrackID=1xj325GBj6SYCm5vN6zlxHQLTu21e7tXzTtv9rH-d_hOHdC-zs0gkfRfpdTDMQzETF1PLMCkF3qtxcwGiEAPCvJpaOXNv7QLbNOl3lPurceI; __jdu=1518511195; whwswswws=; qd_fs=1591258521024; qd_uid=KB0I8KW2-0FGL2N2ALEJ6Z9I099BM; qd_ls=1591258521024; qd_ts=1591258521024; qd_sq=1; mba_muid=1518511195; __jdc=122270672; __jdv=122270672|www.bilibili.com|-|referral|-|1594711941382; __jda=122270672.1518511195.1578103279.1594711941.1595562045.11; shshshfp=154c038f34ff993974e5e9b610b88006; jcap_dvzw_fp=2b9f81c066ead9bfb4078e5f06a4191f$808260587155; TrackerID=4TXSbe6A-4_HKN8nx6SDOoXJbQP4kvSwhT79krsg4_h0YSFBD4DnkKUrK_oUv-ucPemsC5M6do-9RLp4AyeJ0w6XmgsK8H68-MryBw-O_i4; pt_key=AAJfGlhgADC1gtbm2kdjjaw_uwN_QWpx-OJ8e04vt9ge-hRjke98F6aOSfQOIPeVyekTW3Bq_wY; pt_pin=jd_792227b8aa521; pt_token=5bkfc5s7; pwdt_id=jd_792227b8aa521; shshshsID=62c3acb157e85d331455a567e109a5e4_2_1595562099366; 3AB9D23F7A4B3C9B=UKPLCZJGF5FT6WQ6OHAB7KP7VG5VJYNFECTOEI5ZL6M2ZDWUD2Q6QCNQSLORRZYSZ5JMQJLCRSKQCESAT3MJP2K75A; __jd_ref_cls=MJingDouHome_Checkin; mobilev=html5; __jdb=122270672.5.1518511195|11.1595562045; mba_sid=15955620458787630880265298399.5
